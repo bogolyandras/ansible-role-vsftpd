@@ -1,0 +1,5 @@
+# roles/example/tasks/redhat.yml
+- name: Install vsftpd server for RHEL
+  ansible.builtin.yum:
+    name: "vsftpd"
+    state: present

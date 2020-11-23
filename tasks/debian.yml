@@ -1,0 +1,5 @@
+# roles/example/tasks/debian.yml
+- name: Install vsftpd server for Debian
+  ansible.builtin.apt:
+    name: "vsftpd"
+    state: present

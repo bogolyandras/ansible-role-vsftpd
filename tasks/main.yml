@@ -1,2 +1,15 @@
 ---
 # tasks file for vsftpd
+- name: Install vsftpd server for RHEL
+  import_tasks: redhat.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Install vsftpd server for Debian
+  import_tasks: debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Make sure vsftpd is running
+  ansible.builtin.systemd:
+    name: vsftpd
+    enabled: yes
+    state: started
