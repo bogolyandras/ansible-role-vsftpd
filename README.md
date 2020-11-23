@@ -1,7 +1,10 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+An Ansible role to install VSFTPD and manage related user accounts.
+
+[Ansible Galaxy](https://galaxy.ansible.com/bogolyandras/vsftpd)
+[![Build Status](https://travis-ci.com/bogolyandras/ansible-role-vsftpd.svg?branch=main)](https://travis-ci.com/bogolyandras/ansible-role-vsftpd)
 
 Requirements
 ------------
