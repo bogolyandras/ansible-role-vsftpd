@@ -3,3 +3,21 @@
   ansible.builtin.yum:
     name: "vsftpd"
     state: present
+
+- name: Update VSFTPD configuration for RHEL
+  ansible.builtin.template:
+    src: vsftpd.conf.j2
+    dest: /etc/vsftpd/vsftpd.conf
+  notify: restart vsftpd
+
+- name : Update VSFTPD user list for RHEL
+  ansible.builtin.template:
+    src: user_list.j2
+    dest: /etc/vsftpd/user_list
+  notify: restart vsftpd
+
+- name : Update PAM configuration for RHEL
+  ansible.builtin.copy:
+    src: vsftpd.rhel.pam
+    dest: /etc/pam.d/vsftpd_nopam
+  notify: restart vsftpd

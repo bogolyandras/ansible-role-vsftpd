@@ -1,0 +1,64 @@
+# Vsftpd configuration that only allows specific users to log in
+# and also chroots them.
+
+# listen_ipv6 will enable dual protocol IPv4 and IPv6 mode
+listen=NO
+listen_ipv6=YES
+
+# Disable anonymous logins and enable specific local users
+# to log in
+anonymous_enable=NO
+local_enable=YES
+
+# The local users allowed to log in should be specified in the
+# variable list, so user_list file will be filled accordingly
+userlist_enable=YES
+
+
+{% if ansible_facts['os_family']|lower == 'redhat' %}
+#RHEL
+userlist_file=/etc/vsftpd/user_list
+{% elif ansible_facts['os_family']|lower == 'debian' %}
+#Debian
+userlist_file=/etc/vsftpd.user_list
+{% endif %}
+
+# Userlist acts as a whitelist 
+userlist_deny=NO
+check_shell=NO
+
+# We need to change the PAM if we want to allow noshell logins
+pam_service_name=vsftpd_nopam
+
+# Make sure PORT transfer connections originate from port 20 (ftp-data).
+connect_from_port_20=YES
+
+# Chroot will hide system specific files
+chroot_local_user=YES
+
+# Allow write access
+write_enable=YES
+local_umask=022
+allow_writeable_chroot=YES
+
+# Activate logging of uploads/downloads.
+xferlog_enable=YES
+# If you want, you can have your log file in standard ftpd xferlog format.
+# Note that the default log file location is /var/log/xferlog in this case.
+xferlog_std_format=YES
+
+#TLS settings for VSFTPD
+#ssl_enable=YES
+#force_local_data_ssl=YES
+#force_local_logins_ssl=YES
+
+# This option specifies the location of the RSA certificate to use for SSL
+# encrypted connections.
+#rsa_cert_file=/etc/certs/rsa.fullchain.crt
+#rsa_private_key_file=/etc/certs/rsa.key
+
+#dsa_cert_file=/etc/certs/ec.fullchain.crt
+#dsa_private_key_file=/etc/certs/ec.key
+
+# Uncomment this to indicate that vsftpd use a utf8 filesystem.
+#utf8_filesystem=YES

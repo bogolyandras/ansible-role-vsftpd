@@ -8,6 +8,15 @@
   import_tasks: debian.yml
   when: ansible_facts['os_family']|lower == 'debian'
 
+- name: Add FTP users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+    home: "{{ item.home }}"
+    create_home: True
+    shell: /sbin/nologin
+  loop: "{{ ftp_users }}"
+
 - name: Make sure vsftpd is running
   ansible.builtin.systemd:
     name: vsftpd
