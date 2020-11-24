@@ -1,4 +1,4 @@
-Role Name
+Vsftpd
 =========
 
 An Ansible role to install VSFTPD and manage related user accounts.
