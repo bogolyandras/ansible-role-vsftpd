@@ -4,7 +4,7 @@ Vsftpd
 An Ansible role to install VSFTPD and manage related user accounts.
 
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-bogolyandras.vsftpd-51936.svg?style=flat)](https://galaxy.ansible.com/bogolyandras/vsftpd)
-[![Build Status](https://travis-ci.com/bogolyandras/ansible-role-vsftpd.svg?branch=main)](https://travis-ci.com/bogolyandras/ansible-role-vsftpd)
+[![Build Status](https://app.travis-ci.com/bogolyandras/ansible-role-vsftpd.svg?branch=main)](https://app.travis-ci.com/bogolyandras/ansible-role-vsftpd)
 
 Requirements
 ------------
